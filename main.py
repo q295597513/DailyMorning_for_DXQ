@@ -206,7 +206,7 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
         print(response)
 
 def get_words():
-  words = requests.get("https://api.shadiao.pro/chp")
+  words = get("https://api.shadiao.pro/chp")
   if words.status_code != 200:
     return get_words()
   return words.json()['data']['text']
