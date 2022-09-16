@@ -197,7 +197,13 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
     else:
         print(response)
 
-
+def get_words():
+  words = requests.get("https://api.shadiao.pro/chp")
+  if words.status_code != 200:
+    return get_words()
+  return words.json()['data']['text']
+        
+        
 if __name__ == "__main__":
     try:
         with open("config.txt", encoding="utf-8") as f:
@@ -220,7 +226,11 @@ if __name__ == "__main__":
     weather, max_temperature, min_temperature = get_weather(province, city)
     # 获取词霸每日金句
     note_ch, note_en = get_ciba()
+    # 获取彩虹屁
+    chp_ch = get_words()
+    chp_en = "I LOVE YOU EVERY DAY 29"
+    
     # 公众号推送消息
     for user in users:
-        send_message(user, accessToken, city, weather, max_temperature, min_temperature, note_ch, note_en)
+        send_message(user, accessToken, city, weather, max_temperature, min_temperature, note_ch, note_en,chp_ch,chp_en)
     os.system("pause")
