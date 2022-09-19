@@ -173,7 +173,7 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
                 "color": get_color()
             },
             "chp_en": {
-                "value": chp_en + year + month +day,
+                "value": "{} {} {} {}".format(chp_en,year, month,day),
                 "color": get_color()
             }
         }
