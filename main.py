@@ -115,7 +115,7 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
     url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(access_token)
     week_list = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
     # github action 系统时间为utc时间 北京时间要 +8小时
-    now_date = localtime(localtime() + 8 * 60 *60)
+    now_date = localtime(time() + 8 * 60 *60)
     year = now_date.tm_year
     month = now_date.tm_mon
     day = now_date.tm_mday
@@ -175,7 +175,7 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
                 "color": get_color()
             },
             "chp_en": {
-                "value": "{} {} {} {}".format(chp_en,year, month,day),
+                "value": chp_en,
                 "color": get_color()
             }
         }
